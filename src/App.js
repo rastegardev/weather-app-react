@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// CSS
+import "./App.css";
+
+// components
+import MobileNavbar from "./components/MobileNavbar";
+
+// pages
+import HomePage from "./pages/HomePage";
+import Search from "./pages/Search";
+import Contact from "./pages/Contact";
+
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <MobileNavbar />
+
+        <Routes>
+          <Route path="/projects/weatherapp/contact-us" element={<Contact />} />
+          <Route path="/projects/weatherapp/search" element={<Search />} />
+          <Route path="/projects/weatherapp" element={<HomePage />} />
+        </Routes>
+      </div>
+    );
+  }
 }
 
 export default App;
