@@ -23,6 +23,10 @@
   font-display: auto;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 *,
 *::before,
 *::after {

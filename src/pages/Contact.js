@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 // styled components
 import styled from "styled-components";
 
@@ -14,6 +18,24 @@ const ContactContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   img {
     width: 100%;
+    animation: Up-and-down-animations 3s linear infinite;
+  }
+  @keyframes Up-and-down-animations {
+    0% {
+      transform: translateY(0px);
+    }
+    25% {
+      transform: translateY(5px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    75% {
+      transform: translateY(5px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
   }
   @media screen and (max-width: 768px) {
     height: 80vh;
@@ -22,7 +44,7 @@ const ContactContainer = styled.div`
 `;
 const ContactTitle = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: center;
   h1 {
@@ -41,13 +63,22 @@ const ContactTitle = styled.div`
 `;
 
 class Contact extends Component {
+  componentDidMount() {
+    AOS.init();
+  }
+
   render() {
     return (
       <ContactContainer>
         <div>
           <img src={Communication} alt="Weather App photo" />
         </div>
-        <ContactTitle>
+        <ContactTitle
+          data-aos="fade-left"
+          data-aos-offset="10"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="1000"
+        >
           <h1>تماس با ما</h1>
           <a href="https://rezarastegar.ir">رفتن به وبسایت</a>
         </ContactTitle>

@@ -19,7 +19,7 @@ const NavbarContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  position: absolute;
+  position: fixed;
   bottom: 0rem;
   right: 0rem;
   left: 0rem;
@@ -61,16 +61,16 @@ class MobileNavbar extends Component {
       <div>
         <NavbarContainer>
           <div>
-            <Link to="/projects/weatherapp/">صفحه اصلی</Link>
-            <img src={HomeIcon} alt="Home Icon" />
-          </div>
-          <div>
-            <Link to="/projects/weatherapp/search">جست و جو</Link>
-            <img src={SearchIcon} alt="Search Icon" />
-          </div>
-          <div>
-            <Link to="/projects/weatherapp/contact-us">تماس با ما</Link>
             <img src={InfoIcon} alt="Search Icon" />
+            <Link to="/projects/weatherapp/contact-us">تماس با ما</Link>
+          </div>
+          <div>
+            <img src={SearchIcon} alt="Search Icon" />
+            <Link to="/projects/weatherapp/search">جست و جو</Link>
+          </div>
+          <div>
+            <img src={HomeIcon} alt="Home Icon" />
+            <Link to="/projects/weatherapp/">صفحه اصلی</Link>
           </div>
         </NavbarContainer>
       </div>

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 // styled components
 import styled from "styled-components";
 
@@ -23,7 +27,7 @@ const HomePageContainer = styled.div`
 `;
 const HomePageTitle = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   flex-direction: column;
   justify-content: center;
   h1 {
@@ -42,10 +46,19 @@ const HomePageTitle = styled.div`
 `;
 
 class HomePage extends Component {
+  componentDidMount() {
+    AOS.init();
+  }
+
   render() {
     return (
       <HomePageContainer>
-        <HomePageTitle>
+        <HomePageTitle
+          data-aos="fade-left"
+          data-aos-offset="10"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="1000"
+        >
           <h1>اپلیکیشن آب و هوا</h1>
           <Link to="/projects/weatherapp/search">جست و جو بین شهرها</Link>
         </HomePageTitle>

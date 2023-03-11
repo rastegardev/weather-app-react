@@ -1,4 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+
+// AOS
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // axios
 import axios from "axios";
@@ -48,7 +52,7 @@ const SearchBox = styled.div`
     }
   }
   button {
-    width: 50%;
+    width: 35%;
     color: #fff;
     border: none;
     outline: none;
@@ -60,6 +64,15 @@ const SearchBox = styled.div`
     background: #feb248;
     border-radius: 50px;
     box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      margin-left: 5px;
+    }
+    @media screen and (max-width: 768px) {
+      width: 70%;
+    }
     img {
       width: 1.5rem;
     }
@@ -104,19 +117,25 @@ const Search = () => {
         SuccessNotify();
         setApiData(data);
         setSpinner(false);
-        console.log(data);
+        {
+          inputRef.current.value = "";
+        }
       })
       .catch((err) => {
         ErrorNotify();
         setSpinner(false);
-        console.log(err);
+        {
+          inputRef.current.value = "";
+        }
       });
   };
 
   // Success
-  const SuccessNotify = () => toast.success(".با موفقیت پیدا شد");
+  const SuccessNotify = () =>
+    toast.success(`اطلاعات آب و هوای شهر ${inputRef.current.value} پیدا شد`);
   // Error
-  const ErrorNotify = () => toast.error("شهر مورد نظر پیدا نشد");
+  const ErrorNotify = () =>
+    toast.error(`شهر ${inputRef.current.value} پیدا نشد مجدد تلاش کنید`);
 
   // Date Builder
   const dateBuilder = (d) => {
@@ -152,31 +171,40 @@ const Search = () => {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
     <SearchContainer>
       <SearchTitle>
         <h2>نام شهر خود را وارد کنید</h2>
       </SearchTitle>
       <SearchBox className="search-box">
-        <button onClick={searchCity}>
-          {spinner ? (
-            <>
-              جست و جو <img src={loadingGif} alt="loading gif" />
-            </>
-          ) : (
-            "پیدا کن"
-          )}
-        </button>
         <input
           type="text"
           className="search-bar"
           placeholder="نام شهر به انگلیسی"
           ref={inputRef}
         />
+        <button onClick={searchCity}>
+          {spinner ? (
+            <>
+              <img src={loadingGif} alt="loading gif" /> جست و جو
+            </>
+          ) : (
+            "پیدا کن"
+          )}
+        </button>
       </SearchBox>
 
       {apiData && (
-        <SearchData>
+        <SearchData
+          data-aos="zoom-in"
+          data-aos-offset="10"
+          data-aos-easing="ease-in-sine"
+          data-aos-duration="1000"
+        >
           <div>
             <p>{apiData.data.weather[0].main}</p>
             <h3>{`${apiData.data.name}, ${apiData.data.sys.country}`}</h3>
