@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 // images
+import wave from "../assets/img/wave.png";
 import HomeIcon from "../assets/img/icon/Home.svg";
 import SearchIcon from "../assets/img/icon/Search.svg";
 import InfoIcon from "../assets/img/icon/Info.svg";
@@ -39,7 +40,7 @@ const NavbarContainer = styled.div`
     &:hover {
       padding: 1rem;
       border-radius: 20px;
-      background: #feb248;
+      background: #008AE6;
       a {
         color: #fff;
       }
@@ -54,11 +55,25 @@ const NavbarContainer = styled.div`
     border-radius: 50px;
   }
 `;
+const FixedShape = styled.div`
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  img {
+    width: 100%;
+    height: 200px;
+  }
+`;
 
 class MobileNavbar extends Component {
   render() {
     return (
       <div>
+        <FixedShape>
+          <img src={wave} alt="wave shape" />
+        </FixedShape>
         <NavbarContainer>
           <div>
             <img src={InfoIcon} alt="Search Icon" />

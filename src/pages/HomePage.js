@@ -18,11 +18,14 @@ const HomePageContainer = styled.div`
   justify-content: center;
   grid-template-columns: repeat(2, 1fr);
   img {
-    width: 100%;
+    width: 120%;
   }
   @media screen and (max-width: 768px) {
     height: 80vh;
     grid-template-columns: repeat(1, 1fr);
+    img {
+    width: 100%;
+  }
   }
 `;
 const HomePageTitle = styled.div`
@@ -39,12 +42,11 @@ const HomePageTitle = styled.div`
     font-size: 1.5rem;
     padding: 1rem 2rem;
     margin-top: 1.5rem;
-    background: #feb248;
+    background: #008AE6;
     border-radius: 20px;
     text-decoration: none;
   }
 `;
-
 class HomePage extends Component {
   componentDidMount() {
     AOS.init();

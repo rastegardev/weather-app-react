@@ -3,7 +3,7 @@
   "short_name": "WeatherApp",
   "theme_color": "#FEB248",
   "background_color": "#fff",
-  "display": "fullScreen",
+  "display": "Standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/projects/weatherapp/",

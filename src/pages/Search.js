@@ -61,7 +61,7 @@ const SearchBox = styled.div`
     padding: 1.5rem 2.5rem;
     margin-top: 1.5rem;
     margin-right: 1rem;
-    background: #feb248;
+    background: #008AE6;
     border-radius: 50px;
     box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
     display: flex;

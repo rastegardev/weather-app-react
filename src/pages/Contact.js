@@ -56,7 +56,7 @@ const ContactTitle = styled.div`
     font-size: 1.5rem;
     padding: 1rem 2rem;
     margin-top: 1.5rem;
-    background: #feb248;
+    background: #008AE6;
     border-radius: 20px;
     text-decoration: none;
   }
