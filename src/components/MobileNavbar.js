@@ -14,9 +14,11 @@ const NavbarContainer = styled.div`
   margin: 0 auto;
   max-width: 768px;
   padding: 1.7rem 0.5rem;
-  border-top: 1px solid #f2f2f2;
   font-size: 1.5rem;
   background: #f4f4f4;
+  border-top: 1px solid #f2f2f2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -24,7 +26,6 @@ const NavbarContainer = styled.div`
   bottom: 0rem;
   right: 0rem;
   left: 0rem;
-  box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
   a {
     color: #232323;
     cursor: pointer;
@@ -40,7 +41,7 @@ const NavbarContainer = styled.div`
     &:hover {
       padding: 1rem;
       border-radius: 20px;
-      background: #008AE6;
+      background: #008ae6;
       a {
         color: #fff;
       }

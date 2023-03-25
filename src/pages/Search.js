@@ -14,6 +14,7 @@ import styled from "styled-components";
 import toast, { Toaster } from "react-hot-toast";
 
 // images
+import InfoIcon from "../assets/img/icon/Info.svg";
 import loadingGif from "../assets/img/loading.gif";
 
 const SearchContainer = styled.div`
@@ -29,8 +30,62 @@ const SearchContainer = styled.div`
 const SearchTitle = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
+  img {
+    max-width: 20px;
+    margin: 5px 7px;
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip div {
+    text-decoration: underline dotted;
+    opacity: 0.8;
+  }
+
+  .tooltip div:hover {
+    opacity: 1;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  @media screen and (max-width: 768px) {
+    .tooltip .tooltiptext {
+      margin-left: -55px;
+    }
+  }
 `;
 const SearchBox = styled.div`
   display: flex;
@@ -42,11 +97,13 @@ const SearchBox = styled.div`
     outline: none;
     text-align: center;
     font-size: 1.5rem;
-    border: 1px solid #f4f4f4;
+    background: #fff;
+    border-top: 1px solid #f2f2f2;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     padding: 1.5rem 2.5rem;
     margin-top: 1.5rem;
     border-radius: 50px;
-    box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
     @media screen and (max-width: 768px) {
       padding: 1rem 2rem;
     }
@@ -61,7 +118,7 @@ const SearchBox = styled.div`
     padding: 1.5rem 2.5rem;
     margin-top: 1.5rem;
     margin-right: 1rem;
-    background: #008AE6;
+    background: #008ae6;
     border-radius: 50px;
     box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -84,9 +141,11 @@ const SearchBox = styled.div`
 const SearchData = styled.div`
   margin-top: 1.5rem;
   padding: 3rem 2rem;
-  background: #f4f4f4;
   border-radius: 20px;
-  box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-top: 1px solid #f2f2f2;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,6 +238,14 @@ const Search = () => {
     <SearchContainer>
       <SearchTitle>
         <h2>نام شهر خود را وارد کنید</h2>
+        <p class="tooltip">
+          <div>
+            <img src={InfoIcon} alt="info icon" />
+          </div>
+          <span class="tooltiptext">
+            در صورت عدم دریافت اطلاعات و بروز خطا لطفا از vpn استفاده کنید.
+          </span>
+        </p>
       </SearchTitle>
       <SearchBox className="search-box">
         <input
@@ -200,7 +267,7 @@ const Search = () => {
 
       {apiData && (
         <SearchData
-          data-aos="zoom-in"
+          data-aos="fade-up"
           data-aos-offset="10"
           data-aos-easing="ease-in-sine"
           data-aos-duration="1000"

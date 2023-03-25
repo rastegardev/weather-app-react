@@ -50,15 +50,17 @@ const ContactTitle = styled.div`
   h1 {
     text-align: right;
   }
-  a {
+  button {
     color: #fff;
     cursor: pointer;
     font-size: 1.5rem;
     padding: 1rem 2rem;
     margin-top: 1.5rem;
-    background: #008AE6;
+    background: #008ae6;
     border-radius: 20px;
     text-decoration: none;
+    border: none;
+    outline: none;
   }
 `;
 
@@ -80,7 +82,14 @@ class Contact extends Component {
           data-aos-duration="1000"
         >
           <h1>تماس با ما</h1>
-          <a href="https://rezarastegar.ir">رفتن به وبسایت</a>
+          <p>
+            جهت دانلود سورس کد این پروژه در گیت هاب{" "}
+            <a href="https://github.com/rastegardev/weather-app-react">اینجا</a>{" "}
+            کلیک کنید
+          </p>
+          <a href="https://rezarastegar.ir">
+            <button>رفتن به وبسایت</button>
+          </a>
         </ContactTitle>
       </ContactContainer>
     );
