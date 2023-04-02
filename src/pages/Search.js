@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 
+// useTitle
+import useTitle from "../hooks/useTitle";
+
 // AOS
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -87,7 +90,7 @@ const SearchTitle = styled.div`
     }
   }
 `;
-const SearchBox = styled.div`
+const SearchBox = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -149,25 +152,45 @@ const SearchData = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  h3 {
+    text-align: left;
+  }
+  img {
+    width: 70px;
+  }
   .temp {
+    font-size: 3rem;
+    text-align: left;
     font-weight: 700;
-    font-size: 5rem;
   }
   @media screen and (max-width: 768px) {
     .temp {
-      font-size: 4rem;
+      font-size: 2.5rem;
     }
   }
+`;
+
+const DataDescription = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  background: #f4f4f4;
+  border-radius: 20px;
 `;
 
 const apiKey = "75b9ff91c1c9b1d204bc50b6ee7bccda";
 
 const Search = () => {
+  useTitle("جست و جو");
+
   const inputRef = useRef("");
   const [apiData, setApiData] = useState("");
   const [spinner, setSpinner] = useState(false);
 
-  const searchCity = async () => {
+  const searchCity = async (e) => {
+    e.preventDefault();
     setSpinner(true);
     const URL = `https://api.openweathermap.org/data/2.5/weather?q=${inputRef.current.value}&units=metric&appid=${apiKey}`;
     axios
@@ -254,7 +277,7 @@ const Search = () => {
           placeholder="نام شهر به انگلیسی"
           ref={inputRef}
         />
-        <button onClick={searchCity}>
+        <button onClick={searchCity} type="submit">
           {spinner ? (
             <>
               <img src={loadingGif} alt="loading gif" /> جست و جو
@@ -272,12 +295,19 @@ const Search = () => {
           data-aos-easing="ease-in-sine"
           data-aos-duration="1000"
         >
+          <DataDescription>
+            <img
+              src={`https://openweathermap.org/img/w/${apiData.data.weather[0]["icon"]}.png`}
+              alt="icon"
+            />
+            <p>{apiData.data.weather[0].description}</p>
+          </DataDescription>
+
           <div>
-            <p>{apiData.data.weather[0].main}</p>
+            <p className="temp">{Math.round(apiData.data.main.temp)}°c</p>
             <h3>{`${apiData.data.name}, ${apiData.data.sys.country}`}</h3>
             <p>{dateBuilder(new Date())}</p>
           </div>
-          <p className="temp">{Math.round(apiData.data.main.temp)}°c</p>
         </SearchData>
       )}
 

@@ -1,4 +1,7 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+
+// useTitle
+import useTitle from "../hooks/useTitle";
 
 // AOS
 import AOS from "aos";
@@ -64,36 +67,36 @@ const ContactTitle = styled.div`
   }
 `;
 
-class Contact extends Component {
-  componentDidMount() {
-    AOS.init();
-  }
+const Contact = () => {
+  useTitle("تماس با ما");
 
-  render() {
-    return (
-      <ContactContainer>
-        <div>
-          <img src={Communication} alt="Weather App photo" />
-        </div>
-        <ContactTitle
-          data-aos="fade-left"
-          data-aos-offset="10"
-          data-aos-easing="ease-in-sine"
-          data-aos-duration="1000"
-        >
-          <h1>تماس با ما</h1>
-          <p>
-            جهت دانلود سورس کد این پروژه در گیت هاب{" "}
-            <a href="https://github.com/rastegardev/weather-app-react">اینجا</a>{" "}
-            کلیک کنید
-          </p>
-          <a href="https://rezarastegar.ir">
-            <button>رفتن به وبسایت</button>
-          </a>
-        </ContactTitle>
-      </ContactContainer>
-    );
-  }
-}
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  return (
+    <ContactContainer>
+      <div>
+        <img src={Communication} alt="Weather App photo" />
+      </div>
+      <ContactTitle
+        data-aos="fade-left"
+        data-aos-offset="10"
+        data-aos-easing="ease-in-sine"
+        data-aos-duration="1000"
+      >
+        <h1>تماس با ما</h1>
+        <p>
+          جهت دانلود سورس کد این پروژه در گیت هاب
+          <a href="https://github.com/rastegardev/weather-app-react">اینجا</a>{" "}
+          کلیک کنید
+        </p>
+        <a href="https://rezarastegar.ir">
+          <button>رفتن به وبسایت</button>
+        </a>
+      </ContactTitle>
+    </ContactContainer>
+  );
+};
 
 export default Contact;

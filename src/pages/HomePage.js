@@ -1,5 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// useTitle
+import useTitle from "../hooks/useTitle";
 
 // AOS
 import AOS from "aos";
@@ -24,8 +27,8 @@ const HomePageContainer = styled.div`
     height: 80vh;
     grid-template-columns: repeat(1, 1fr);
     img {
-    width: 100%;
-  }
+      width: 100%;
+    }
   }
 `;
 const HomePageTitle = styled.div`
@@ -42,34 +45,35 @@ const HomePageTitle = styled.div`
     font-size: 1.5rem;
     padding: 1rem 2rem;
     margin-top: 1.5rem;
-    background: #008AE6;
+    background: #008ae6;
     border-radius: 20px;
     text-decoration: none;
   }
 `;
-class HomePage extends Component {
-  componentDidMount() {
-    AOS.init();
-  }
 
-  render() {
-    return (
-      <HomePageContainer>
-        <HomePageTitle
-          data-aos="fade-left"
-          data-aos-offset="10"
-          data-aos-easing="ease-in-sine"
-          data-aos-duration="1100"
-        >
-          <h1>اپلیکیشن آب و هوا</h1>
-          <Link to="/projects/weatherapp/search">جست و جو بین شهرها</Link>
-        </HomePageTitle>
-        <div>
-          <img src={animationRain} alt="Weather App photo" />
-        </div>
-      </HomePageContainer>
-    );
-  }
-}
+const HomePage = () => {
+  useTitle("صفحه اصلی");
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  return (
+    <HomePageContainer>
+      <HomePageTitle
+        data-aos="fade-left"
+        data-aos-offset="10"
+        data-aos-easing="ease-in-sine"
+        data-aos-duration="1000"
+      >
+        <h1>اپلیکیشن آب و هوا</h1>
+        <Link to="/projects/weatherapp/search">جست و جو بین شهرها</Link>
+      </HomePageTitle>
+      <div>
+        <img src={animationRain} alt="Weather App photo" />
+      </div>
+    </HomePageContainer>
+  );
+};
 
 export default HomePage;
