@@ -59,7 +59,7 @@ class HomePage extends Component {
           data-aos="fade-left"
           data-aos-offset="10"
           data-aos-easing="ease-in-sine"
-          data-aos-duration="1000"
+          data-aos-duration="1100"
         >
           <h1>اپلیکیشن آب و هوا</h1>
           <Link to="/projects/weatherapp/search">جست و جو بین شهرها</Link>
